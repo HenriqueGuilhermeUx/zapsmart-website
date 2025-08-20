@@ -8,12 +8,1167 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .logo {
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #2563eb;
+        }
+
+        .btn-chat {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .btn-chat:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fbbf24;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Phone Mockup */
+        .phone-mockup {
+            position: relative;
+            width: 300px;
+            height: 600px;
+            background: #000;
+            border-radius: 30px;
+            padding: 20px;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #f8f9fa;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .whatsapp-chat {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: #075e54;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #25d366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .chat-name {
+            font-weight: 600;
+        }
+
+        .chat-status {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            background: #e5ddd5;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+        }
+
+        .bot-message .message-text {
+            background: white;
+            padding: 0.75rem;
+            border-radius: 10px;
+            max-width: 80%;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: #f8fafc;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .feature-description {
+            color: #64748b;
+        }
+
+        /* Areas Section */
+        .areas {
+            padding: 80px 0;
+        }
+
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .area-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .area-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #2563eb;
+        }
+
+        .area-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .area-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+
+        .area-description {
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+
+        .area-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .area-tag {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary.large {
+            padding: 1.25rem 2.5rem;
+            font-size: 1.2rem;
+        }
+
+        .btn-secondary.large {
+            padding: 1.25rem 2.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-description {
+            color: #94a3b8;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #94a3b8;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+        }
+
+        /* Web Chat Widget */
+        .web-chat {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .web-chat.active {
+            display: flex;
+        }
+
+        .web-chat .chat-header {
+            background: #075e54;
+            color: white;
+            padding: 1rem;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chat-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .web-chat .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: #f0f0f0;
+        }
+
+        .chat-input-area {
+            padding: 1rem;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        .chat-send {
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .user-message .message-text {
+            background: #dcf8c6;
+            padding: 0.75rem;
+            border-radius: 10px;
+            margin-left: auto;
+            max-width: 80%;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Chat Bubble */
+        .chat-bubble {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            z-index: 999;
+            transition: transform 0.3s;
+        }
+
+        .chat-bubble:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-bubble.hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .phone-mockup {
+                width: 250px;
+                height: 500px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .areas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+
+            .web-chat {
+                width: 90%;
+                right: 5%;
+                left: 5%;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>ZapSmart - Em Breve!</h1>
-    <p>Site em construção. Em breve teremos nossa landing page completa!</p>
-    <p>Por enquanto, teste nosso chatbot no WhatsApp!</p>
-    <a href="https://wa.me/5511999999999" target="_blank">Testar no WhatsApp</a>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <span class="logo">🤖</span>
+                <span class="brand-name">ZapSmart</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#features" class="nav-link">Funcionalidades</a>
+                <a href="#areas" class="nav-link">Áreas</a>
+                <a href="#contact" class="nav-link">Contato</a>
+                <button class="btn-chat" onclick="openChat()">
+                    <i class="fas fa-comments"></i> Testar Agora
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Seu Assistente <span class="gradient-text">Inteligente</span><br>
+                        no WhatsApp
+                    </h1>
+                    <p class="hero-description">
+                        ZapSmart oferece informações atualizadas em 11 áreas especializadas. 
+                        De finanças a horóscopo, tudo na palma da sua mão!
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary" onclick="openWhatsApp()">
+                            <i class="fab fa-whatsapp"></i> Começar Agora
+                        </button>
+                        <button class="btn-secondary" onclick="openChat()">
+                            <i class="fas fa-play"></i> Testar Aqui
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">11</span>
+                            <span class="stat-label">Áreas Especializadas</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Disponível</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Gratuito</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="whatsapp-chat">
+                                <div class="chat-header">
+                                    <div class="chat-avatar">🤖</div>
+                                    <div class="chat-info">
+                                        <div class="chat-name">ZapSmart</div>
+                                        <div class="chat-status">online</div>
+                                    </div>
+                                </div>
+                                <div class="chat-messages">
+                                    <div class="message bot-message">
+                                        <div class="message-text">
+                                            Olá! 👋 Sou o ZapSmart, seu assistente inteligente!
+                                        </div>
+                                    </div>
+                                    <div class="message bot-message">
+                                        <div class="message-text">
+                                            Escolha uma área:<br>
+                                            💰 Finanças<br>
+                                            ⚽ Futebol<br>
+                                            🔮 Horóscopo<br>
+                                            🏃 Corrida<br>
+                                            E muito mais!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Por que escolher o ZapSmart?</h2>
+                <p class="section-description">
+                    Tecnologia avançada para oferecer a melhor experiência
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3 class="feature-title">Respostas Instantâneas</h3>
+                    <p class="feature-description">
+                        Informações atualizadas em tempo real, sem espera
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3 class="feature-title">Inteligência Artificial</h3>
+                    <p class="feature-description">
+                        IA avançada para respostas contextualizadas e precisas
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">100% Seguro</h3>
+                    <p class="feature-description">
+                        Seus dados protegidos com criptografia de ponta
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Multiplataforma</h3>
+                    <p class="feature-description">
+                        WhatsApp, Web e em breve Telegram e Discord
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Areas Section -->
+    <section id="areas" class="areas">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">11 Áreas Especializadas</h2>
+                <p class="section-description">
+                    Tudo que você precisa em um só lugar
+                </p>
+            </div>
+            <div class="areas-grid">
+                <div class="area-card" onclick="testArea('financas')">
+                    <div class="area-icon">💰</div>
+                    <h3 class="area-title">Finanças</h3>
+                    <p class="area-description">Cotações, ações, criptomoedas e dicas de investimento</p>
+                    <div class="area-features">
+                        <span class="area-tag">Dólar</span>
+                        <span class="area-tag">B3</span>
+                        <span class="area-tag">Bitcoin</span>
+                    </div>
+                </div>
+                <div class="area-card" onclick="testArea('futebol')">
+                    <div class="area-icon">⚽</div>
+                    <h3 class="area-title">Futebol</h3>
+                    <p class="area-description">Resultados, escalações, transferências e estatísticas</p>
+                    <div class="area-features">
+                        <span class="area-tag">Brasileirão</span>
+                        <span class="area-tag">Champions</span>
+                        <span class="area-tag">Copa</span>
+                    </div>
+                </div>
+                <div class="area-card" onclick="testArea('corrida')">
+                    <div class="area-icon">🏃</div>
+                    <h3 class="area-title">Corrida</h3>
+                    <p class="area-description">Treinos, dicas de performance e desafios</p>
+                    <div class="area-features">
+                        <span class="area-tag">Treinos</span>
+                        <span class="area-tag">Pace</span>
+                        <span class="area-tag">Metas</span>
+                    </div>
+                </div>
+                <div class="area-card" onclick="testArea('dieta')">
+                    <div class="area-icon">🥗</div>
+                    <h3 class="area-title">Dieta & Emagrecimento</h3>
+                    <p class="area-description">Receitas saudáveis, calorias e motivação</p>
+                    <div class="area-features">
+                        <span class="area-tag">Receitas</span>
+                        <span class="area-tag">Calorias</span>
+                        <span class="area-tag">IMC</span>
+                    </div>
+                </div>
+                <div class="area-card" onclick="testArea('horoscopo')">
+                    <div class="area-icon">🔮</div>
+                    <h3 class="area-title">Horóscopo</h3>
+                    <p class="area-description">Previsões diárias, compatibilidade e rituais</p>
+                    <div class="area-features">
+                        <span class="area-tag">Signos</span>
+                        <span class="area-tag">Tarot</span>
+                        <span class="area-tag">Rituais</span>
+                    </div>
+                </div>
+                <div class="area-card" onclick="testArea('saude')">
+                    <div class="area-icon">🧘</div>
+                    <h3 class="area-title">Saúde Mental</h3>
+                    <p class="area-description">Meditação, mindfulness e bem-estar</p>
+                    <div class="area-features">
+                        <span class="area-tag">Meditação</span>
+                        <span class="area-tag">Ansiedade</span>
+                        <span class="area-tag">Motivação</span>
+                    </div>
+                </div>
+                <div class="area-card" onclick="testArea('games')">
+                    <div class="area-icon">🎮</div>
+                    <h3 class="area-title">Games & eSports</h3>
+                    <p class="area-description">Lançamentos, reviews e campeonatos</p>
+                    <div class="area-features">
+                        <span class="area-tag">Reviews</span>
+                        <span class="area-tag">eSports</span>
+                        <span class="area-tag">Promoções</span>
+                    </div>
+                </div>
+                <div class="area-card" onclick="testArea('filmes')">
+                    <div class="area-icon">🎬</div>
+                    <h3 class="area-title">Filmes & Séries</h3>
+                    <p class="area-description">Lançamentos, recomendações e onde assistir</p>
+                    <div class="area-features">
+                        <span class="area-tag">Netflix</span>
+                        <span class="area-tag">Cinema</span>
+                        <span class="area-tag">Reviews</span>
+                    </div>
+                </div>
+                <div class="area-card" onclick="testArea('educacao')">
+                    <div class="area-icon">🎓</div>
+                    <h3 class="area-title">Educação</h3>
+                    <p class="area-description">Vestibulares, cursos e desenvolvimento</p>
+                    <div class="area-features">
+                        <span class="area-tag">ENEM</span>
+                        <span class="area-tag">Cursos</span>
+                        <span class="area-tag">Carreira</span>
+                    </div>
+                </div>
+                <div class="area-card" onclick="testArea('viagens')">
+                    <div class="area-icon">✈️</div>
+                    <h3 class="area-title">Viagens</h3>
+                    <p class="area-description">Promoções, roteiros e dicas de destinos</p>
+                    <div class="area-features">
+                        <span class="area-tag">Passagens</span>
+                        <span class="area-tag">Hotéis</span>
+                        <span class="area-tag">Roteiros</span>
+                    </div>
+                </div>
+                <div class="area-card" onclick="testArea('promocoes')">
+                    <div class="area-icon">🛍️</div>
+                    <h3 class="area-title">Promoções</h3>
+                    <p class="area-description">Ofertas, cashback e comparação de preços</p>
+                    <div class="area-features">
+                        <span class="area-tag">Ofertas</span>
+                        <span class="area-tag">Cashback</span>
+                        <span class="area-tag">Cupons</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Pronto para começar?</h2>
+                <p class="cta-description">
+                    Junte-se a milhares de usuários que já usam o ZapSmart diariamente
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn-primary large" onclick="openWhatsApp()">
+                        <i class="fab fa-whatsapp"></i> Começar no WhatsApp
+                    </button>
+                    <button class="btn-secondary large" onclick="openChat()">
+                        <i class="fas fa-comments"></i> Testar no Site
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo">🤖</span>
+                        <span class="brand-name">ZapSmart</span>
+                    </div>
+                    <p class="footer-description">
+                        Seu assistente inteligente para o dia a dia
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Produto</h4>
+                        <a href="#features">Funcionalidades</a>
+                        <a href="#areas">Áreas</a>
+                        <a href="#contact">Contato</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Suporte</h4>
+                        <a href="#contact">Contato</a>
+                        <a href="#help">Ajuda</a>
+                        <a href="#faq">FAQ</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="#privacy">Privacidade</a>
+                        <a href="#terms">Termos</a>
+                        <a href="#cookies">Cookies</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ZapSmart. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Bubble -->
+    <div class="chat-bubble" onclick="openChat()">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Web Chat Widget -->
+    <div id="webChat" class="web-chat">
+        <div class="chat-header">
+            <div class="chat-info">
+                <div class="chat-avatar">🤖</div>
+                <div class="chat-details">
+                    <div class="chat-name">ZapSmart</div>
+                    <div class="chat-status">Online</div>
+                </div>
+            </div>
+            <button class="chat-close" onclick="closeChat()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                <div class="message-text">
+                    Olá! 👋 Sou o ZapSmart, seu assistente inteligente!<br><br>
+                    Escolha uma área para testar:<br>
+                    💰 Digite "1" para Finanças<br>
+                    ⚽ Digite "2" para Futebol<br>
+                    🔮 Digite "5" para Horóscopo<br>
+                    🏃 Digite "3" para Corrida<br>
+                    🥗 Digite "4" para Dieta<br><br>
+                    Ou digite qualquer pergunta!
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Digite sua mensagem..." onkeypress="handleKeyPress(event)">
+            <button class="chat-send" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Chat functionality
+        function openChat() {
+            document.getElementById('webChat').classList.add('active');
+            document.querySelector('.chat-bubble').classList.add('hidden');
+        }
+
+        function closeChat() {
+            document.getElementById('webChat').classList.remove('active');
+            document.querySelector('.chat-bubble').classList.remove('hidden');
+        }
+
+        function openWhatsApp() {
+            window.open('https://wa.me/5511999999999?text=Olá! Quero testar o ZapSmart!', '_blank');
+        }
+
+        function testArea(area) {
+            openChat();
+            setTimeout(() => {
+                const areaMessages = {
+                    'financas': '💰 Finanças',
+                    'futebol': '⚽ Futebol', 
+                    'corrida': '🏃 Corrida',
+                    'dieta': '🥗 Dieta',
+                    'horoscopo': '🔮 Horóscopo',
+                    'saude': '🧘 Saúde Mental',
+                    'games': '🎮 Games',
+                    'filmes': '🎬 Filmes',
+                    'educacao': '🎓 Educação',
+                    'viagens': '✈️ Viagens',
+                    'promocoes': '🛍️ Promoções'
+                };
+                
+                if (areaMessages[area]) {
+                    document.getElementById('chatInput').value = areaMessages[area];
+                    sendMessage();
+                }
+            }, 500);
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            // Add user message
+            addMessage(message, 'user');
+            input.value = '';
+
+            // Show typing indicator
+            addTypingIndicator();
+
+            try {
+                // Send to ZapSmart backend
+                const response = await fetch('https://zapsmart-bot.onrender.com/web/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        user_id: 'web_user_' + Date.now()
+                    })
+                });
+
+                const data = await response.json();
+                
+                // Remove typing indicator
+                removeTypingIndicator();
+                
+                // Add bot response
+                addMessage(data.response || 'Desculpe, não consegui processar sua mensagem. Tente novamente!', 'bot');
+                
+            } catch (error) {
+                console.error('Erro:', error);
+                removeTypingIndicator();
+                addMessage('🤖 Ops! Parece que estou com problemas de conexão. Tente usar o WhatsApp: https://wa.me/5511999999999', 'bot');
+            }
+        }
+
+        function addMessage(text, sender) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            
+            const messageText = document.createElement('div');
+            messageText.className = 'message-text';
+            messageText.innerHTML = text.replace(/\n/g, '<br>');
+            
+            messageDiv.appendChild(messageText);
+            messagesContainer.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function addTypingIndicator() {
+            const messagesContainer = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot-message typing-indicator';
+            typingDiv.innerHTML = '<div class="message-text">🤖 Digitando...</div>';
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const typingIndicator = document.querySelector('.typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.feature-card, .area-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
+

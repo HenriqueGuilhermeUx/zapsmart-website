@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZapSmart - Assistente Inteligente WhatsApp</title>
+    <title>ZapSmart - 12 Assistentes Especializados</title>
     <style>
         * {
             margin: 0;
@@ -47,22 +47,6 @@
             font-weight: bold;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -71,22 +55,6 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
         }
 
         .hero h1 {
@@ -145,59 +113,8 @@
             transform: translateY(-2px);
         }
 
-        /* Phone Mockup */
-        .phone-mockup {
-            margin: 60px auto;
-            max-width: 300px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .phone {
-            background: #000;
-            border-radius: 30px;
-            padding: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .phone-screen {
-            background: #075E54;
-            border-radius: 20px;
-            padding: 20px;
-            color: white;
-            font-size: 0.9rem;
-        }
-
-        .whatsapp-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .avatar {
-            width: 40px;
-            height: 40px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-            font-weight: bold;
-        }
-
-        .chat-message {
-            background: #DCF8C6;
-            color: #000;
-            padding: 10px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            font-size: 0.8rem;
-        }
-
-        /* Features Section */
-        .features {
+        /* Areas Section */
+        .areas {
             padding: 80px 0;
             background: #f8f9fa;
         }
@@ -205,87 +122,100 @@
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             color: #333;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        .section-subtitle {
             text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .feature-card p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
             color: #666;
-            line-height: 1.6;
-        }
-
-        /* Areas Section */
-        .areas {
-            padding: 80px 0;
-            background: white;
         }
 
         .areas-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
             margin-top: 3rem;
         }
 
         .area-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem;
+            background: white;
+            padding: 2rem;
             border-radius: 15px;
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
         }
 
         .area-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .area-card.premium {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: white;
+            border: 2px solid #FFD700;
+        }
+
+        .area-card.premium:hover {
+            background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
         }
 
         .area-emoji {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
         .area-title {
-            font-size: 1.1rem;
+            font-size: 1.4rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
         }
 
         .area-desc {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .area-status {
             font-size: 0.9rem;
-            opacity: 0.9;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .status-ativo {
+            background: #28a745;
+            color: white;
+        }
+
+        .status-premium {
+            background: #FFD700;
+            color: #333;
+        }
+
+        .whatsapp-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-link:hover {
+            background: #128C7E;
+            transform: scale(1.05);
         }
 
         /* Chat Widget */
@@ -436,28 +366,6 @@
             padding: 40px 0;
         }
 
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: #25D366;
-        }
-
-        .footer-section p, .footer-section a {
-            color: #ccc;
-            text-decoration: none;
-            line-height: 1.8;
-        }
-
-        .footer-section a:hover {
-            color: #25D366;
-        }
-
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -468,11 +376,6 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
         }
 
         @keyframes pulse {
@@ -491,10 +394,8 @@
             .hero h1 { font-size: 2.5rem; }
             .hero p { font-size: 1.1rem; }
             .cta-buttons { flex-direction: column; align-items: center; }
-            .nav-links { display: none; }
             .chat-popup { width: 300px; height: 400px; }
-            .features-grid { grid-template-columns: 1fr; }
-            .areas-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+            .areas-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -504,96 +405,22 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">🤖 ZapSmart</div>
-                <nav>
-                    <ul class="nav-links">
-                        <li><a href="#home">Início</a></li>
-                        <li><a href="#features">Recursos</a></li>
-                        <li><a href="#areas">Áreas</a></li>
-                        <li><a href="#contact">Contato</a></li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>ZapSmart</h1>
-                <p>Assistente Inteligente com 11 Áreas Especializadas</p>
-                <div class="cta-buttons">
-                    <a href="https://wa.me/5511999999999" class="btn btn-primary">
-                        📱 Testar no WhatsApp
-                    </a>
-                    <button onclick="toggleChat()" class="btn btn-secondary">
-                        💬 Testar Agora
-                    </button>
-                </div>
-            </div>
-
-            <!-- Phone Mockup -->
-            <div class="phone-mockup">
-                <div class="phone">
-                    <div class="phone-screen">
-                        <div class="whatsapp-header">
-                            <div class="avatar">🤖</div>
-                            <div>
-                                <div style="font-weight: bold;">ZapSmart</div>
-                                <div style="font-size: 0.7rem; opacity: 0.8;">online</div>
-                            </div>
-                        </div>
-                        <div class="chat-message">
-                            🤖 Olá! Sou seu assistente inteligente com 11 áreas especializadas:
-                            <br><br>
-                            1️⃣ 💰 Finanças<br>
-                            2️⃣ ⚽ Futebol<br>
-                            3️⃣ 🏃 Corrida<br>
-                            4️⃣ 🥗 Dieta<br>
-                            5️⃣ 🔮 Horóscopo<br>
-                            E muito mais!
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">Por que escolher o ZapSmart?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>IA Integrada</h3>
-                    <p>Powered by OpenAI para respostas inteligentes e personalizadas em todas as áreas.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Dados em Tempo Real</h3>
-                    <p>Scraping ativo de cotações, resultados esportivos e informações atualizadas.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>11 Áreas Especializadas</h3>
-                    <p>Finanças, Futebol, Saúde, Games, Filmes, Educação, Viagens e muito mais!</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>WhatsApp + Web</h3>
-                    <p>Acesse pelo WhatsApp ou diretamente no site. Máxima conveniência!</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Respostas Rápidas</h3>
-                    <p>Informações instantâneas com cache inteligente e otimização de performance.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Seguro e Confiável</h3>
-                    <p>Seus dados protegidos com tecnologia de ponta e servidores seguros.</p>
-                </div>
+            <h1>ZapSmart</h1>
+            <p>12 Assistentes Especializados para Todas as Suas Necessidades</p>
+            <div class="cta-buttons">
+                <button onclick="toggleChat()" class="btn btn-primary">
+                    💬 Testar Bot Geral
+                </button>
+                <a href="#areas" class="btn btn-secondary">
+                    🎯 Ver Todas as Áreas
+                </a>
             </div>
         </div>
     </section>
@@ -601,90 +428,107 @@
     <!-- Areas Section -->
     <section id="areas" class="areas">
         <div class="container">
-            <h2 class="section-title">11 Áreas Especializadas</h2>
+            <h2 class="section-title">12 Assistentes Especializados</h2>
+            <p class="section-subtitle">Escolha o assistente ideal para suas necessidades</p>
+            
             <div class="areas-grid">
-                <div class="area-card" onclick="sendMessage('1')">
+                <!-- Áreas Premium -->
+                <div class="area-card premium">
                     <div class="area-emoji">💰</div>
-                    <div class="area-title">Finanças</div>
-                    <div class="area-desc">Cotações, Bitcoin, Ações</div>
+                    <div class="area-title">ZapSmart Finanças</div>
+                    <div class="area-desc">Cotações em tempo real, análise técnica, Bitcoin, ações B3, calculadoras financeiras avançadas</div>
+                    <div class="area-status status-premium">🌟 PREMIUM</div>
+                    <a href="https://wa.me/5511999999998" class="whatsapp-link">📱 Acessar WhatsApp</a>
                 </div>
-                <div class="area-card" onclick="sendMessage('2')">
+
+                <div class="area-card premium">
                     <div class="area-emoji">⚽</div>
-                    <div class="area-title">Futebol</div>
-                    <div class="area-desc">Brasileirão, Champions</div>
+                    <div class="area-title">ZapSmart Futebol</div>
+                    <div class="area-desc">Brasileirão ao vivo, Champions League, mercado de transferências, estatísticas completas</div>
+                    <div class="area-status status-premium">🌟 PREMIUM</div>
+                    <a href="https://wa.me/5511999999997" class="whatsapp-link">📱 Acessar WhatsApp</a>
                 </div>
+
+                <div class="area-card premium">
+                    <div class="area-emoji">🎰</div>
+                    <div class="area-title">ZapSmart Apostas</div>
+                    <div class="area-desc">Tips profissionais, análise de odds, estatísticas esportivas, gestão de banca</div>
+                    <div class="area-status status-premium">🌟 PREMIUM</div>
+                    <a href="https://wa.me/5511999999996" class="whatsapp-link">📱 Acessar WhatsApp</a>
+                </div>
+
+                <!-- Áreas do Bot Geral -->
                 <div class="area-card" onclick="sendMessage('3')">
                     <div class="area-emoji">🏃</div>
-                    <div class="area-title">Corrida</div>
-                    <div class="area-desc">Treinos, Pace, Eventos</div>
+                    <div class="area-title">Corrida & Atletismo</div>
+                    <div class="area-desc">Treinos personalizados, calculadora de pace, preparação para maratona</div>
+                    <div class="area-status status-ativo">✅ ATIVO</div>
                 </div>
+
                 <div class="area-card" onclick="sendMessage('4')">
                     <div class="area-emoji">🥗</div>
-                    <div class="area-title">Dieta</div>
-                    <div class="area-desc">Receitas, IMC, Nutrição</div>
+                    <div class="area-title">Dieta & Nutrição</div>
+                    <div class="area-desc">Receitas saudáveis, calculadora IMC, planos de emagrecimento</div>
+                    <div class="area-status status-ativo">✅ ATIVO</div>
                 </div>
+
                 <div class="area-card" onclick="sendMessage('5')">
                     <div class="area-emoji">🔮</div>
-                    <div class="area-title">Horóscopo</div>
-                    <div class="area-desc">Previsões, Signos</div>
+                    <div class="area-title">Horóscopo & Astrologia</div>
+                    <div class="area-desc">Previsões diárias, compatibilidade entre signos, mapa astral</div>
+                    <div class="area-status status-ativo">✅ ATIVO</div>
                 </div>
+
                 <div class="area-card" onclick="sendMessage('6')">
                     <div class="area-emoji">🧘</div>
                     <div class="area-title">Saúde Mental</div>
-                    <div class="area-desc">Meditação, Bem-estar</div>
+                    <div class="area-desc">Meditação guiada, exercícios de bem-estar, controle de ansiedade</div>
+                    <div class="area-status status-ativo">✅ ATIVO</div>
                 </div>
+
                 <div class="area-card" onclick="sendMessage('7')">
                     <div class="area-emoji">🎮</div>
-                    <div class="area-title">Games</div>
-                    <div class="area-desc">Lançamentos, eSports</div>
+                    <div class="area-title">Games & eSports</div>
+                    <div class="area-desc">Lançamentos, reviews, eSports, requisitos de sistema</div>
+                    <div class="area-status status-ativo">✅ ATIVO</div>
                 </div>
+
                 <div class="area-card" onclick="sendMessage('8')">
                     <div class="area-emoji">🎬</div>
-                    <div class="area-title">Filmes</div>
-                    <div class="area-desc">Cinema, Netflix, Séries</div>
+                    <div class="area-title">Filmes & Séries</div>
+                    <div class="area-desc">Cinema, Netflix, Prime Video, recomendações personalizadas</div>
+                    <div class="area-status status-ativo">✅ ATIVO</div>
                 </div>
+
                 <div class="area-card" onclick="sendMessage('9')">
                     <div class="area-emoji">🎓</div>
                     <div class="area-title">Educação</div>
-                    <div class="area-desc">ENEM, Vestibulares</div>
+                    <div class="area-desc">ENEM, vestibulares, cursos online, dicas de estudo</div>
+                    <div class="area-status status-ativo">✅ ATIVO</div>
                 </div>
+
                 <div class="area-card" onclick="sendMessage('10')">
                     <div class="area-emoji">✈️</div>
-                    <div class="area-title">Viagens</div>
-                    <div class="area-desc">Passagens, Hotéis</div>
+                    <div class="area-title">Viagens & Turismo</div>
+                    <div class="area-desc">Passagens aéreas, hotéis, roteiros, documentos de viagem</div>
+                    <div class="area-status status-ativo">✅ ATIVO</div>
                 </div>
+
                 <div class="area-card" onclick="sendMessage('11')">
                     <div class="area-emoji">🛍️</div>
-                    <div class="area-title">Promoções</div>
-                    <div class="area-desc">Ofertas, Cashback</div>
+                    <div class="area-title">Promoções & Ofertas</div>
+                    <div class="area-desc">Cupons de desconto, cashback, Black Friday, comparação de preços</div>
+                    <div class="area-status status-ativo">✅ ATIVO</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact">
+    <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>ZapSmart</h3>
-                    <p>Assistente inteligente com 11 áreas especializadas. Dados em tempo real, IA integrada e máxima conveniência.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Contato</h3>
-                    <p>📱 WhatsApp: +55 11 99999-9999</p>
-                    <p>📧 Email: contato@zapsmart.club</p>
-                    <p>🌐 Site: zapsmart.club</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Áreas</h3>
-                    <p>💰 Finanças • ⚽ Futebol • 🏃 Corrida</p>
-                    <p>🥗 Dieta • 🔮 Horóscopo • 🧘 Saúde</p>
-                    <p>🎮 Games • 🎬 Filmes • 🎓 Educação</p>
-                    <p>✈️ Viagens • 🛍️ Promoções</p>
-                </div>
-            </div>
             <p>&copy; 2024 ZapSmart. Todos os direitos reservados.</p>
+            <p>🤖 12 Assistentes Especializados • 💬 WhatsApp + Web • 🚀 IA Integrada</p>
         </div>
     </footer>
 
@@ -694,10 +538,10 @@
         <div class="chat-popup" id="chatPopup">
             <div class="chat-header">
                 <div style="display: flex; align-items: center; gap: 10px;">
-                    <div class="avatar">🤖</div>
+                    <div style="width: 40px; height: 40px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">🤖</div>
                     <div>
-                        <div style="font-weight: bold;">ZapSmart</div>
-                        <div style="font-size: 0.8rem; opacity: 0.8;">online</div>
+                        <div style="font-weight: bold;">ZapSmart Geral</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">9 áreas ativas</div>
                     </div>
                 </div>
                 <button onclick="toggleChat()" style="background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer;">✕</button>
@@ -705,13 +549,13 @@
             <div class="chat-body" id="chatBody">
                 <div class="message bot">
                     <div class="message-content">
-                        🤖 Olá! Sou o ZapSmart, seu assistente inteligente!<br><br>
-                        Tenho 11 áreas especializadas:<br>
-                        💰 Finanças • ⚽ Futebol • 🏃 Corrida<br>
-                        🥗 Dieta • 🔮 Horóscopo • 🧘 Saúde<br>
-                        🎮 Games • 🎬 Filmes • 🎓 Educação<br>
-                        ✈️ Viagens • 🛍️ Promoções<br><br>
-                        Digite 'menu' ou faça qualquer pergunta!
+                        🤖 Olá! Sou o ZapSmart Geral!<br><br>
+                        Tenho 9 áreas ativas:<br>
+                        🏃 Corrida • 🥗 Dieta • 🔮 Horóscopo<br>
+                        🧘 Saúde Mental • 🎮 Games • 🎬 Filmes<br>
+                        🎓 Educação • ✈️ Viagens • 🛍️ Promoções<br><br>
+                        Para áreas premium (💰 Finanças, ⚽ Futebol, 🎰 Apostas), use os links específicos acima!<br><br>
+                        Digite 'menu' ou escolha uma área!
                     </div>
                 </div>
                 <div class="typing" id="typing">
@@ -772,8 +616,8 @@
             showTyping();
             
             try {
-                // Chamar API do ZapSmart
-                const response = await fetch('https://zapsmart-bot.onrender.com/web/chat', {
+                // Chamar API do ZapSmart Geral
+                const response = await fetch('https://zapsmart-bot-geral.onrender.com/web/chat', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -795,7 +639,7 @@
             } catch (error) {
                 console.error('Erro:', error);
                 hideTyping();
-                addMessage('🤖 Ops! Estou com problemas de conexão. Tente usar o WhatsApp: https://wa.me/5511999999999', 'bot');
+                addMessage('🤖 Ops! Estou com problemas de conexão. Tente novamente em alguns segundos.', 'bot');
             }
         }
 
@@ -837,29 +681,6 @@
                     });
                 }
             });
-        });
-
-        // Animação de entrada dos elementos
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observar elementos para animação
-        document.querySelectorAll('.feature-card, .area-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
         });
     </script>
 </body>

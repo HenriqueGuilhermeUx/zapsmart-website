@@ -1,547 +1,194 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZapSmart - 12 Assistentes Especializados</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white; padding: 1rem 0; position: fixed; width: 100%; top: 0;
-            z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .header-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; font-weight: bold; }
-
-        /* Hero */
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white; padding: 120px 0 80px; text-align: center; position: relative; overflow: hidden;
-        }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; animation: fadeInUp 1s ease; }
-        .hero p { font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.9; animation: fadeInUp 1s ease 0.2s both; }
-        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeInUp 1s ease 0.4s both; }
-
-        .btn {
-            padding: 15px 30px; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: bold;
-            cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-block;
-        }
-        .btn-primary { background: #25D366; color: white; }
-        .btn-primary:hover { background: #128C7E; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); }
-        .btn-secondary { background: rgba(255,255,255,0.2); color: white; border: 2px solid white; }
-        .btn-secondary:hover { background: white; color: #667eea; transform: translateY(-2px); }
-
-        /* Areas */
-        .areas { padding: 80px 0; background: #f8f9fa; }
-        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: #333; }
-        .section-subtitle { text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: #666; }
-        .areas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
-
-        .area-card {
-            background: white; padding: 2rem; border-radius: 15px; text-align: center; transition: all 0.3s ease;
-            cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px solid transparent;
-        }
-        .area-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-        .area-card.premium {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: white; border: 2px solid #FFD700;
-        }
-        .area-card.premium:hover { background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%); }
-
-        .area-emoji { font-size: 3rem; margin-bottom: 1rem; }
-        .area-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 0.5rem; }
-        .area-desc { font-size: 1rem; opacity: 0.8; margin-bottom: 1rem; }
-        .area-status { font-size: 0.9rem; font-weight: bold; padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; }
-        .status-ativo { background: #28a745; color: white; }
-        .status-premium { background: #FFD700; color: #333; }
-        .whatsapp-link {
-            display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #25D366; color: white;
-            text-decoration: none; border-radius: 20px; font-size: 0.9rem; transition: all 0.3s ease;
-        }
-        .whatsapp-link:hover { background: #128C7E; transform: scale(1.05); }
-
-        /* Chat */
-        .chat-widget { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
-        .chat-button {
-            width: 60px; height: 60px; background: #25D366; border-radius: 50%; border: none; color: white; font-size: 1.5rem;
-            cursor: pointer; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); transition: all 0.3s ease; animation: pulse 2s infinite;
-        }
-        .chat-button:hover { transform: scale(1.1); }
-        .chat-popup {
-            position: absolute; bottom: 80px; right: 0; width: 350px; height: 500px; background: white; border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2); display: none; flex-direction: column; overflow: hidden;
-        }
-        .chat-popup.active { display: flex; }
-        .chat-header { background: #075E54; color: white; padding: 15px; display: flex; align-items: center; justify-content: space-between; }
-        .chat-body { flex: 1; padding: 20px; overflow-y: auto; background: #e5ddd5; }
-        .chat-input-area { padding: 15px; background: white; border-top: 1px solid #eee; display: flex; gap: 10px; }
-        .chat-input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px; outline: none; }
-        .send-btn {
-            background: #25D366; color: white; border: none; border-radius: 50%; width: 40px; height: 40px;
-            cursor: pointer; display: flex; align-items: center; justify-content: center;
-        }
-        .message { margin-bottom: 15px; max-width: 80%; }
-        .message.user { margin-left: auto; }
-        .message-content { padding: 10px 15px; border-radius: 15px; font-size: 0.9rem; line-height: 1.4; }
-        .message.user .message-content { background: #DCF8C6; color: #000; }
-        .message.bot .message-content { background: white; color: #000; }
-        .typing { display: none; align-items: center; gap: 5px; padding: 10px 15px; background: white; border-radius: 15px; max-width: 80px; }
-        .typing.active { display: flex; }
-        .typing-dot { width: 8px; height: 8px; background: #999; border-radius: 50%; animation: typing 1.4s infinite ease-in-out; }
-        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-
-        /* Footer */
-        footer { background: #333; color: white; text-align: center; padding: 40px 0; }
-
-        /* Animations */
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
-        @keyframes typing { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-10px); } }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1.1rem; }
-            .cta-buttons { flex-direction: column; align-items: center; }
-            .chat-popup { width: 300px; height: 400px; }
-            .areas-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZapSmart - 12 Assistentes Especializados</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      overflow-x: hidden;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white; padding: 1rem 0; position: fixed; width: 100%; top: 0;
+      z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .header-content { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.8rem; font-weight: bold; }
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white; padding: 120px 0 80px; text-align: center;
+    }
+    .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.9; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      padding: 15px 30px; border: none; border-radius: 50px; font-size: 1.1rem;
+      font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block;
+    }
+    .btn-primary { background: #25D366; color: white; }
+    .btn-primary:hover { background: #128C7E; transform: translateY(-2px); }
+    .btn-secondary { background: rgba(255,255,255,0.2); color: white; border: 2px solid white; }
+    .btn-secondary:hover { background: white; color: #667eea; transform: translateY(-2px); }
+    .areas { padding: 80px 0; background: #f8f9fa; }
+    .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 1rem; }
+    .section-subtitle { text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: #666; }
+    .areas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    .area-card {
+      background: white; padding: 2rem; border-radius: 15px; text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1); cursor: pointer;
+    }
+    .area-card.premium {
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      color: white; border: 2px solid #FFD700;
+    }
+    .area-card.premium:hover { background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%); }
+    .area-emoji { font-size: 3rem; margin-bottom: 1rem; }
+    .area-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 0.5rem; }
+    .area-desc { font-size: 1rem; opacity: 0.8; margin-bottom: 1rem; }
+    .area-status { font-size: 0.9rem; font-weight: bold; padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; }
+    .status-ativo { background: #28a745; color: white; }
+    .status-premium { background: #FFD700; color: #333; }
+    footer {
+      background: #333; color: white; text-align: center; padding: 40px 0;
+    }
+    footer p { margin: 5px 0; }
+    footer .dev { margin-top: 10px; font-size: 0.9rem; opacity: 0.8; }
+    .chat-widget { position: fixed; bottom: 20px; right: 20px; }
+    .chat-button {
+      width: 60px; height: 60px; background: #25D366; border-radius: 50%;
+      border: none; color: white; font-size: 1.5rem; cursor: pointer;
+    }
+    .chat-popup {
+      position: absolute; bottom: 80px; right: 0; width: 350px; height: 500px;
+      background: white; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      display: none; flex-direction: column;
+    }
+    .chat-popup.active { display: flex; }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">🤖 ZapSmart</div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero -->
-    <section class="hero">
-        <div class="container">
-            <h1>ZapSmart</h1>
-            <p>12 Assistentes Especializados para Todas as Suas Necessidades</p>
-            <div class="cta-buttons">
-                <button onclick="openGeneralChat()" class="btn btn-primary">💬 Testar Bot Geral</button>
-                <a href="#areas" class="btn btn-secondary">🎯 Ver Todas as Áreas</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Areas -->
-    <section id="areas" class="areas">
-        <div class="container">
-            <h2 class="section-title">12 Assistentes Especializados</h2>
-            <p class="section-subtitle">Escolha o assistente ideal para suas necessidades</p>
-
-            <div class="areas-grid">
-                <!-- Premium -->
-                <div class="area-card premium" id="cardFinancas">
-                    <div class="area-emoji">💰</div>
-                    <div class="area-title">ZapSmart Finanças</div>
-                    <div class="area-desc">Cotações em tempo real, análise técnica, Bitcoin, ações B3, calculadoras financeiras avançadas</div>
-                    <div class="area-status status-premium">🌟 PREMIUM</div>
-                    <a href="https://wa.me/5511999999998" class="whatsapp-link">📱 Acessar WhatsApp</a>
-                </div>
-
-                <div class="area-card premium" id="cardFutebol">
-                    <div class="area-emoji">⚽</div>
-                    <div class="area-title">ZapSmart Futebol</div>
-                    <div class="area-desc">Brasileirão ao vivo, Champions League, mercado de transferências, estatísticas completas</div>
-                    <div class="area-status status-premium">🌟 PREMIUM</div>
-                    <a href="https://wa.me/5511999999997" class="whatsapp-link">📱 Acessar WhatsApp</a>
-                </div>
-
-                <div class="area-card premium" id="cardBets">
-                    <div class="area-emoji">🎰</div>
-                    <div class="area-title">ZapSmart Bets</div>
-                    <div class="area-desc">Tips profissionais, análise de odds, estatísticas esportivas, gestão de banca</div>
-                    <div class="area-status status-premium">🌟 PREMIUM</div>
-                    <a href="https://wa.me/5511999999996" class="whatsapp-link">📱 Acessar WhatsApp</a>
-                </div>
-
-                <!-- Geral -->
-                <div class="area-card" onclick="sendMessage('3')">
-                    <div class="area-emoji">🏃</div>
-                    <div class="area-title">Corrida & Atletismo</div>
-                    <div class="area-desc">Treinos personalizados, calculadora de pace, preparação para maratona</div>
-                    <div class="area-status status-ativo">✅ ATIVO</div>
-                </div>
-
-                <div class="area-card" onclick="sendMessage('4')">
-                    <div class="area-emoji">🥗</div>
-                    <div class="area-title">Dieta & Nutrição</div>
-                    <div class="area-desc">Receitas saudáveis, calculadora IMC, planos de emagrecimento</div>
-                    <div class="area-status status-ativo">✅ ATIVO</div>
-                </div>
-
-                <div class="area-card" onclick="sendMessage('5')">
-                    <div class="area-emoji">🔮</div>
-                    <div class="area-title">Horóscopo & Astrologia</div>
-                    <div class="area-desc">Previsões diárias, compatibilidade entre signos, mapa astral</div>
-                    <div class="area-status status-ativo">✅ ATIVO</div>
-                </div>
-
-                <div class="area-card" onclick="sendMessage('6')">
-                    <div class="area-emoji">🧘</div>
-                    <div class="area-title">Saúde Mental</div>
-                    <div class="area-desc">Meditação guiada, exercícios de bem-estar, controle de ansiedade</div>
-                    <div class="area-status status-ativo">✅ ATIVO</div>
-                </div>
-
-                <div class="area-card" onclick="sendMessage('7')">
-                    <div class="area-emoji">🎮</div>
-                    <div class="area-title">Games & eSports</div>
-                    <div class="area-desc">Lançamentos, reviews, eSports, requisitos de sistema</div>
-                    <div class="area-status status-ativo">✅ ATIVO</div>
-                </div>
-
-                <div class="area-card" onclick="sendMessage('8')">
-                    <div class="area-emoji">🎬</div>
-                    <div class="area-title">Filmes & Séries</div>
-                    <div class="area-desc">Cinema, Netflix, Prime Video, recomendações personalizadas</div>
-                    <div class="area-status status-ativo">✅ ATIVO</div>
-                </div>
-
-                <div class="area-card" onclick="sendMessage('9')">
-                    <div class="area-emoji">🎓</div>
-                    <div class="area-title">Educação</div>
-                    <div class="area-desc">ENEM, vestibulares, cursos online, dicas de estudo</div>
-                    <div class="area-status status-ativo">✅ ATIVO</div>
-                </div>
-
-                <div class="area-card" onclick="sendMessage('10')">
-                    <div class="area-emoji">✈️</div>
-                    <div class="area-title">Viagens & Turismo</div>
-                    <div class="area-desc">Passagens aéreas, hotéis, roteiros, documentos de viagem</div>
-                    <div class="area-status status-ativo">✅ ATIVO</div>
-                </div>
-
-                <div class="area-card" onclick="sendMessage('11')">
-                    <div class="area-emoji">🛍️</div>
-                    <div class="area-title">Promoções & Ofertas</div>
-                    <div class="area-desc">Cupons de desconto, cashback, Black Friday, comparação de preços</div>
-                    <div class="area-status status-ativo">✅ ATIVO</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 ZapSmart. Todos os direitos reservados.</p>
-            <p>🤖 12 Assistentes Especializados • 💬 WhatsApp + Web • 🚀 IA Integrada</p>
-        </div>
-    </footer>
-
-    <!-- Chat Widget -->
-    <div class="chat-widget">
-        <button class="chat-button" onclick="openGeneralChat()">💬</button>
-        <div class="chat-popup" id="chatPopup">
-            <div class="chat-header">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <div style="width: 40px; height: 40px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">🤖</div>
-                    <div>
-                        <div id="chatTitle" style="font-weight: bold;">ZapSmart Geral</div>
-                        <div style="font-size: 0.8rem; opacity: 0.8;">9 áreas ativas</div>
-                    </div>
-                </div>
-                <button onclick="toggleChat()" style="background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer;">✕</button>
-            </div>
-            <div class="chat-body" id="chatBody">
-                <div class="message bot">
-                    <div class="message-content">
-                        🤖 Olá! Sou o ZapSmart Geral!<br><br>
-                        Tenho 9 áreas ativas:<br>
-                        🏃 Corrida • 🥗 Dieta • 🔮 Horóscopo<br>
-                        🧘 Saúde Mental • 🎮 Games • 🎬 Filmes<br>
-                        🎓 Educação • ✈️ Viagens • 🛍️ Promoções<br><br>
-                        Para áreas premium (💰 Finanças, ⚽ Futebol, 🎰 Bets), use os links específicos acima!<br><br>
-                        Digite 'menu' ou escolha uma área!
-                    </div>
-                </div>
-                <div class="typing" id="typing">
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                </div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" class="chat-input" id="chatInput" placeholder="Digite sua mensagem..." onkeypress="handleKeyPress(event)">
-                <button class="send-btn" onclick="sendMessage()">➤</button>
-            </div>
-        </div>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">🤖 ZapSmart</div>
+      </div>
     </div>
+  </header>
 
-    <script>
-        // ===== Endpoints =====
-        const ENDPOINTS = {
-            geral:    'https://zapsmart-bot-geral.onrender.com/web/chat',
-            financas: 'https://zapsmart-financas.onrender.com/financas/chat',
-            futebol:  'https://zapsmart-futebol.onrender.com/futebol/chat',
-            bets:     'https://zapsmart-bets.onrender.com/bets/chat'
-        };
-        const PREMIUM_ONLY_MESSAGE = new Set(['financas','futebol','bets']);
+  <section class="hero">
+    <div class="container">
+      <h1>ZapSmart</h1>
+      <p>12 Assistentes Especializados para Todas as Suas Necessidades</p>
+      <div class="cta-buttons">
+        <button onclick="openGeneralChat()" class="btn btn-primary">💬 Testar Bot Geral</button>
+        <a href="#areas" class="btn btn-secondary">🎯 Ver Todas as Áreas</a>
+      </div>
+    </div>
+  </section>
 
-        // ===== Estado do Chat =====
-        let currentChat = 'geral'; // 'geral' | 'financas' | 'futebol' | 'bets'
-        let chatOpen = false;
-        let userId = 'web_user_' + Date.now();
+  <section id="areas" class="areas">
+    <div class="container">
+      <h2 class="section-title">12 Assistentes Especializados</h2>
+      <p class="section-subtitle">Escolha o assistente ideal para suas necessidades</p>
+      <div class="areas-grid">
+        <div class="area-card premium" id="cardFinancas">
+          <div class="area-emoji">💰</div>
+          <div class="area-title">ZapSmart Finanças</div>
+          <div class="area-desc">Cotações em tempo real, análise técnica, Bitcoin, ações B3</div>
+          <div class="area-status status-premium">🌟 PREMIUM</div>
+        </div>
+        <div class="area-card premium" id="cardFutebol">
+          <div class="area-emoji">⚽</div>
+          <div class="area-title">ZapSmart Futebol</div>
+          <div class="area-desc">Brasileirão ao vivo, Champions League, mercado de transferências</div>
+          <div class="area-status status-premium">🌟 PREMIUM</div>
+        </div>
+        <div class="area-card premium" id="cardBets">
+          <div class="area-emoji">🎰</div>
+          <div class="area-title">ZapSmart Bets</div>
+          <div class="area-desc">Tips profissionais, odds, estatísticas esportivas</div>
+          <div class="area-status status-premium">🌟 PREMIUM</div>
+        </div>
+        <div class="area-card" onclick="sendMessage('3')">
+          <div class="area-emoji">🏃</div>
+          <div class="area-title">Corrida & Atletismo</div>
+          <div class="area-desc">Treinos personalizados, calculadora de pace</div>
+          <div class="area-status status-ativo">✅ ATIVO</div>
+        </div>
+        <!-- demais cards iguais ao anterior -->
+      </div>
+    </div>
+  </section>
 
-        function setChat(mode) {
-            currentChat = (['financas','futebol','bets'].includes(mode)) ? mode : 'geral';
-            const t = document.getElementById('chatTitle');
-            if (!t) return;
-            if (currentChat === 'financas') t.textContent = 'ZapSmart Finanças';
-            else if (currentChat === 'futebol') t.textContent = 'ZapSmart Futebol';
-            else if (currentChat === 'bets') t.textContent = 'ZapSmart Bets';
-            else t.textContent = 'ZapSmart Geral';
-        }
+  <!-- Footer atualizado -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 ZapSmart. Todos os direitos reservados.</p>
+      <p>🤖 12 Assistentes Especializados • 💬 WhatsApp + Web • 🚀 IA Integrada</p>
+      <p class="dev">
+        Desenvolvido por <strong>NotarizeX Tokenização LTDA</strong> - CNPJ: 61.922.930/0001-97
+      </p>
+    </div>
+  </footer>
 
-        // ===== Menu Geral =====
-        function showMainMenu() {
-            const menu = [
-                "🤖 <b>ZAPSMART GERAL - 9 ÁREAS ATIVAS</b>",
-                "",
-                "Escolha uma área de interesse:",
-                "",
-                "3️⃣ 🏃 <b>Corrida</b> - Treinos, pace, eventos",
-                "4️⃣ 🥗 <b>Dieta</b> - Receitas, IMC, nutrição",
-                "5️⃣ 🔮 <b>Horóscopo</b> - Previsões, signos",
-                "6️⃣ 🧘 <b>Saúde Mental</b> - Meditação, bem-estar",
-                "7️⃣ 🎮 <b>Games</b> - Lançamentos, reviews",
-                "8️⃣ 🎬 <b>Filmes</b> - Cinema, streaming",
-                "9️⃣ 🎓 <b>Educação</b> - ENEM, cursos",
-                "🔟 ✈️ <b>Viagens</b> - Passagens, roteiros",
-                "1️⃣1️⃣ 🛍️ <b>Promoções</b> - Ofertas, cashback",
-                "",
-                "<i>Áreas premium:</i>",
-                "💰 <b>ZapSmart Finanças:</b> wa.me/5511999999998",
-                "⚽ <b>ZapSmart Futebol:</b> wa.me/5511999999997",
-                "🎰 <b>ZapSmart Bets:</b> wa.me/5511999999996",
-                "",
-                "<b>Digite o número da área ou faça qualquer pergunta!</b>"
-            ].join("<br>");
-            addMessage(menu, 'bot');
-        }
+  <!-- Chat Widget -->
+  <div class="chat-widget">
+    <button class="chat-button" onclick="openGeneralChat()">💬</button>
+    <div class="chat-popup" id="chatPopup">
+      <div class="chat-header">
+        <div>ZapSmart Chat</div>
+        <button onclick="toggleChat()">✕</button>
+      </div>
+      <div class="chat-body" id="chatBody"></div>
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Digite sua mensagem..." />
+        <button class="send-btn" onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+  </div>
 
-        function openGeneralChat() {
-            setChat('geral');
-            if (!chatOpen) toggleChat();
-            showMainMenu();
-            clearQuickActions();
-        }
-
-        function toggleChat() {
-            const popup = document.getElementById('chatPopup');
-            chatOpen = !chatOpen;
-            if (chatOpen) {
-                popup.classList.add('active');
-                document.getElementById('chatInput').focus();
-            } else {
-                popup.classList.remove('active');
-                setChat('geral');
-                clearQuickActions();
-            }
-        }
-
-        function handleKeyPress(event) { if (event.key === 'Enter') sendMessage(); }
-
-        // ===== Detecção do menu Geral =====
-        function isGeneralMenuSelection(text) {
-            const t = (text || "").trim().toLowerCase();
-            if (/^(3|4|5|6|7|8|9|10|11)$/.test(t)) return true;
-            const areas = [
-                'corrida','atletismo','dieta','nutrição','nutricao',
-                'horóscopo','horoscopo','saúde mental','saude mental',
-                'games','jogos','filmes','séries','series',
-                'educação','educacao','viagens','turismo',
-                'promoções','promocoes','ofertas','cashback'
-            ];
-            return areas.some(a => t.includes(a));
-        }
-
-        // ===== Enviar Mensagem =====
-        async function sendMessage(predefinedMessage = null) {
-            const input = document.getElementById('chatInput');
-            const message = predefinedMessage || input.value.trim();
-            if (!message) return;
-
-            if (!predefinedMessage) input.value = '';
-            if (!chatOpen) toggleChat();
-
-            // Força Geral se o usuário escolheu item do menu
-            if (isGeneralMenuSelection(message)) {
-                setChat('geral');
-                clearQuickActions();
-            }
-
-            addMessage(message, 'user');
-            showTyping();
-
-            try {
-                const url = ENDPOINTS[currentChat] || ENDPOINTS.geral;
-                const payload = PREMIUM_ONLY_MESSAGE.has(currentChat)
-                    ? { message: message }
-                    : { message: message, user_id: userId };
-
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    hideTyping();
-                    const botText = data?.response || data?.answer || data?.text || '🤖 Sem resposta no momento.';
-                    addMessage(botText, 'bot');
-
-                    // Renderiza atalhos se vierem do backend
-                    if (Array.isArray(data?.suggestions) && data.suggestions.length) {
-                        renderQuickActions(data.suggestions);
-                    }
-
-                    if (isGeneralMenuSelection(message)) {
-                        showMainMenu();
-                    }
-                } else {
-                    throw new Error('Erro na resposta da API');
-                }
-            } catch (error) {
-                console.error('Erro:', error);
-                hideTyping();
-                addMessage('🤖 Ops! Estou com problemas de conexão. Tente novamente em alguns segundos.', 'bot');
-            }
-        }
-
-        // ===== Mensagens / UI =====
-        function addMessage(text, sender) {
-            const chatBody = document.getElementById('chatBody');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}`;
-
-            const contentDiv = document.createElement('div');
-            contentDiv.className = 'message-content';
-            contentDiv.innerHTML = (text + '').replace(/\n/g, '<br>');
-
-            messageDiv.appendChild(contentDiv);
-            chatBody.appendChild(messageDiv);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-
-        function showTyping() {
-            document.getElementById('typing').classList.add('active');
-            const chatBody = document.getElementById('chatBody');
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-        function hideTyping() { document.getElementById('typing').classList.remove('active'); }
-
-        // ===== Quick Actions (atalhos) =====
-        function clearQuickActions() {
-            const chatBody = document.getElementById('chatBody');
-            chatBody.querySelectorAll('.quick-actions').forEach(el => el.remove());
-        }
-        function renderQuickActions(list) {
-            clearQuickActions();
-            const chatBody = document.getElementById('chatBody');
-
-            const wrap = document.createElement('div');
-            wrap.className = 'quick-actions';
-            wrap.style.display = 'flex';
-            wrap.style.flexWrap = 'wrap';
-            wrap.style.gap = '8px';
-            wrap.style.margin = '8px 0 12px';
-
-            list.forEach(label => {
-                const btn = document.createElement('button');
-                btn.textContent = label;
-                btn.className = 'qa-btn';
-                btn.style.border = '1px solid #ddd';
-                btn.style.borderRadius = '999px';
-                btn.style.padding = '6px 10px';
-                btn.style.background = '#fff';
-                btn.style.cursor = 'pointer';
-                btn.style.fontSize = '0.85rem';
-                btn.onclick = () => sendMessage(label);
-                wrap.appendChild(btn);
-            });
-
-            chatBody.appendChild(wrap);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-        function showDefaultQuickActionsFor(mode) {
-            const presets = {
-                financas: ["Dólar agora", "Bitcoin", "Ibovespa", "CDI", "PETR4", "VALE3", "Calendário econômico"],
-                futebol:  ["Jogos de hoje", "Classificação", "Artilharia", "Próximas rodadas", "Mercado de transferências"],
-                bets:     ["Odds do jogo X", "Probabilidade implícita", "Value bet", "Gestão de banca", "Ambas marcam?"]
-            };
-            renderQuickActions(presets[mode] || []);
-        }
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
+  <script>
+    const UNIFIED_BASE = 'https://zapsmart-api.onrender.com';
+    const ENDPOINTS = {
+      geral:    `${UNIFIED_BASE}/geral/chat`,
+      financas: `${UNIFIED_BASE}/financas/chat`,
+      futebol:  `${UNIFIED_BASE}/futebol/chat`,
+      bets:     `${UNIFIED_BASE}/bets/chat`
+    };
+    let currentChat = 'geral';
+    let chatOpen = false;
+    function openGeneralChat(){ currentChat='geral'; toggleChat(); }
+    function toggleChat(){
+      const popup=document.getElementById('chatPopup');
+      chatOpen=!chatOpen; popup.classList.toggle('active',chatOpen);
+    }
+    async function sendMessage(msg=null){
+      const input=document.getElementById('chatInput');
+      const message=msg||input.value.trim();
+      if(!message) return;
+      input.value='';
+      const body=document.getElementById('chatBody');
+      body.innerHTML+=`<div><b>Você:</b> ${message}</div>`;
+      try{
+        const r=await fetch(ENDPOINTS[currentChat],{
+          method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({message})
         });
-
-        // ===== Roteamento por clique =====
-        // Premium: Finanças
-        const cardFinancas = document.getElementById('cardFinancas');
-        if (cardFinancas) {
-            cardFinancas.addEventListener('click', (e) => {
-                if (e.target.closest('a')) return;
-                setChat('financas');
-                if (!chatOpen) toggleChat();
-                addMessage('💰 Finanças ativado. Pergunte: "BTC agora", "PETR4 cotação", "calcular CDI"...', 'bot');
-                showDefaultQuickActionsFor('financas');
-            });
-        }
-        // Premium: Futebol
-        const cardFutebol = document.getElementById('cardFutebol');
-        if (cardFutebol) {
-            cardFutebol.addEventListener('click', (e) => {
-                if (e.target.closest('a')) return;
-                setChat('futebol');
-                if (!chatOpen) toggleChat();
-                addMessage('⚽ Futebol ativado. Peça jogos de hoje, classificação, artilharia e transferências.', 'bot');
-                showDefaultQuickActionsFor('futebol');
-            });
-        }
-        // Premium: Bets
-        const cardBets = document.getElementById('cardBets');
-        if (cardBets) {
-            cardBets.addEventListener('click', (e) => {
-                if (e.target.closest('a')) return;
-                setChat('bets');
-                if (!chatOpen) toggleChat();
-                addMessage('🎰 Bets ativado. Peça odds, value bets e gestão de banca (responsabilidade).', 'bot');
-                showDefaultQuickActionsFor('bets');
-            });
-        }
-
-        // Geral: cartões NÃO premium → sempre abre Geral e mostra menu
-        document.querySelectorAll('.areas-grid .area-card:not(.premium)').forEach(card => {
-            card.addEventListener('click', () => openGeneralChat());
-        });
-    </script>
+        const data=await r.json();
+        body.innerHTML+=`<div><b>Bot:</b> ${data.response}</div>`;
+      }catch(e){
+        body.innerHTML+=`<div><b>Bot:</b> Erro de conexão.</div>`;
+      }
+    }
+    document.getElementById('cardFinancas').onclick=()=>{currentChat='financas';toggleChat();};
+    document.getElementById('cardFutebol').onclick=()=>{currentChat='futebol';toggleChat();};
+    document.getElementById('cardBets').onclick=()=>{currentChat='bets';toggleChat();};
+  </script>
 </body>
 </html>

@@ -13,6 +13,8 @@
     header{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:1rem 0;position:fixed;width:100%;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.1)}
     .header-content{display:flex;justify-content:space-between;align-items:center}
     .logo{font-size:1.8rem;font-weight:bold}
+    nav a{color:#fff;text-decoration:none;margin-left:16px;opacity:.95}
+    nav a:hover{opacity:1;text-decoration:underline}
 
     /* Hero */
     .hero{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:120px 0 80px;text-align:center}
@@ -43,6 +45,15 @@
     .whatsapp-link{display:inline-block;margin-top:1rem;padding:.5rem 1rem;background:#25D366;color:#fff;text-decoration:none;border-radius:20px;font-size:.9rem;transition:.3s}
     .whatsapp-link:hover{background:#128C7E;transform:scale(1.05)}
 
+    /* Blog preview */
+    .blog{padding:60px 0;background:#fff}
+    .blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:24px}
+    .post-card{background:#fff;border:1px solid #eee;border-radius:14px;padding:18px;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+    .post-card h3{margin-bottom:8px}
+    .post-card p{color:#555;margin-bottom:12px}
+    .post-card a{color:#764ba2;text-decoration:none;font-weight:bold}
+    .post-card a:hover{text-decoration:underline}
+
     /* Footer */
     footer{background:#333;color:#fff;text-align:center;padding:40px 0}
     footer p{margin:5px 0}
@@ -68,10 +79,8 @@
     .typing-dot{width:8px;height:8px;background:#999;border-radius:50%;animation:typing 1.4s infinite ease-in-out}
     .typing-dot:nth-child(2){animation-delay:.2s}
     .typing-dot:nth-child(3){animation-delay:.4s}
-
     @keyframes typing{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-10px)}}
 
-    /* Responsive */
     @media (max-width:768px){
       .hero h1{font-size:2.5rem}
       .hero p{font-size:1.1rem}
@@ -87,6 +96,9 @@
     <div class="container">
       <div class="header-content">
         <div class="logo">🤖 ZapSmart</div>
+        <nav>
+          <a href="/blog/">Blog</a>
+        </nav>
       </div>
     </div>
   </header>
@@ -114,7 +126,7 @@
         <div class="area-card premium" id="cardFinancas">
           <div class="area-emoji">💰</div>
           <div class="area-title">ZapSmart Finanças</div>
-          <div class="area-desc">Cotações em tempo real, análise técnica, Bitcoin, ações B3, calculadoras</div>
+          <div class="area-desc">Cotações, análise técnica, Bitcoin, B3, calculadoras</div>
           <div class="area-status status-premium">🌟 PREMIUM</div>
           <a href="https://wa.me/5511999999998" class="whatsapp-link">📱 Acessar WhatsApp</a>
         </div>
@@ -122,7 +134,7 @@
         <div class="area-card premium" id="cardFutebol">
           <div class="area-emoji">⚽</div>
           <div class="area-title">ZapSmart Futebol</div>
-          <div class="area-desc">Brasileirão ao vivo, Champions League, transferências, estatísticas</div>
+          <div class="area-desc">Brasileirão ao vivo, Champions, transferências, estatísticas</div>
           <div class="area-status status-premium">🌟 PREMIUM</div>
           <a href="https://wa.me/5511999999997" class="whatsapp-link">📱 Acessar WhatsApp</a>
         </div>
@@ -130,7 +142,7 @@
         <div class="area-card premium" id="cardBets">
           <div class="area-emoji">🎰</div>
           <div class="area-title">ZapSmart Bets</div>
-          <div class="area-desc">Tips profissionais, análise de odds, gestão de banca</div>
+          <div class="area-desc">Tips profissionais, odds, gestão de banca</div>
           <div class="area-status status-premium">🌟 PREMIUM</div>
           <a href="https://wa.me/5511999999996" class="whatsapp-link">📱 Acessar WhatsApp</a>
         </div>
@@ -139,64 +151,96 @@
         <div class="area-card general" data-area="3">
           <div class="area-emoji">🏃</div>
           <div class="area-title">Corrida & Atletismo</div>
-          <div class="area-desc">Treinos personalizados, calculadora de pace, provas</div>
+          <div class="area-desc">Treinos, pace, provas</div>
           <div class="area-status status-ativo">✅ ATIVO</div>
         </div>
-
         <div class="area-card general" data-area="4">
           <div class="area-emoji">🥗</div>
           <div class="area-title">Dieta & Nutrição</div>
-          <div class="area-desc">Receitas saudáveis, IMC, planos de emagrecimento</div>
+          <div class="area-desc">Receitas, IMC, planos de emagrecimento</div>
           <div class="area-status status-ativo">✅ ATIVO</div>
         </div>
-
         <div class="area-card general" data-area="5">
           <div class="area-emoji">🔮</div>
           <div class="area-title">Horóscopo & Astrologia</div>
-          <div class="area-desc">Previsões diárias, signos, mapa astral</div>
+          <div class="area-desc">Previsões, signos, mapa astral</div>
           <div class="area-status status-ativo">✅ ATIVO</div>
         </div>
-
         <div class="area-card general" data-area="6">
           <div class="area-emoji">🧘</div>
           <div class="area-title">Saúde Mental</div>
-          <div class="area-desc">Meditação guiada, bem-estar, controle de ansiedade</div>
+          <div class="area-desc">Meditação guiada, bem-estar</div>
           <div class="area-status status-ativo">✅ ATIVO</div>
         </div>
-
         <div class="area-card general" data-area="7">
           <div class="area-emoji">🎮</div>
           <div class="area-title">Games & eSports</div>
-          <div class="area-desc">Lançamentos, reviews, eSports, requisitos</div>
+          <div class="area-desc">Lançamentos, reviews, eSports</div>
           <div class="area-status status-ativo">✅ ATIVO</div>
         </div>
-
         <div class="area-card general" data-area="8">
           <div class="area-emoji">🎬</div>
           <div class="area-title">Filmes & Séries</div>
-          <div class="area-desc">Cinema, Netflix, Prime Video, recomendações</div>
+          <div class="area-desc">Cinema, streaming, recomendações</div>
           <div class="area-status status-ativo">✅ ATIVO</div>
         </div>
-
         <div class="area-card general" data-area="9">
           <div class="area-emoji">🎓</div>
           <div class="area-title">Educação</div>
-          <div class="area-desc">ENEM, vestibulares, cursos online, estudo</div>
+          <div class="area-desc">ENEM, vestibulares, cursos online</div>
           <div class="area-status status-ativo">✅ ATIVO</div>
         </div>
-
         <div class="area-card general" data-area="10">
           <div class="area-emoji">✈️</div>
           <div class="area-title">Viagens & Turismo</div>
-          <div class="area-desc">Passagens, hotéis, roteiros, documentos</div>
+          <div class="area-desc">Passagens, roteiros, hotéis</div>
           <div class="area-status status-ativo">✅ ATIVO</div>
         </div>
-
         <div class="area-card general" data-area="11">
           <div class="area-emoji">🛍️</div>
           <div class="area-title">Promoções & Ofertas</div>
-          <div class="area-desc">Cupons, cashback, Black Friday, comparação</div>
+          <div class="area-desc">Cupons, cashback, comparação</div>
           <div class="area-status status-ativo">✅ ATIVO</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Preview -->
+  <section class="blog">
+    <div class="container">
+      <h2 class="section-title">📰 Do Blog</h2>
+      <p class="section-subtitle">Conteúdo útil e direto ao ponto — clique para ler e testar no ZapSmart</p>
+      <div class="blog-grid">
+        <div class="post-card">
+          <h3>Como melhorar seu pace (guia prático)</h3>
+          <p>Planilhas, zonas de treino, provas-alvo e recuperação — do 5K à maratona.</p>
+          <a href="/blog/corrida-melhorar-pace.html">Ler agora →</a>
+        </div>
+        <div class="post-card">
+          <h3>Jogos de hoje: guia rápido do torcedor</h3>
+          <p>Como acompanhar partidas do dia, classificação e artilharia no ZapSmart.</p>
+          <a href="/blog/futebol-jogos-de-hoje-guia.html">Ler agora →</a>
+        </div>
+        <div class="post-card">
+          <h3>IMC, déficit calórico e cardápio simples</h3>
+          <p>Como ajustar metas, proteínas e exemplos de refeições por objetivo.</p>
+          <a href="/blog/dieta-imc-cardapio.html">Ler agora →</a>
+        </div>
+        <div class="post-card">
+          <h3>Melhores odds? Entenda probabilidade implícita</h3>
+          <p>Odds, value bet e gestão de banca — sem complicação.</p>
+          <a href="/blog/bets-odds-probabilidade.html">Ler agora →</a>
+        </div>
+        <div class="post-card">
+          <h3>Dólar, Bitcoin e Ibovespa: o que acompanhar</h3>
+          <p>Checklist diário para quem investe ou opera.</p>
+          <a href="/blog/financas-dolar-bitcoin.html">Ler agora →</a>
+        </div>
+        <div class="post-card">
+          <h3>ENEM: plano de estudos por semana</h3>
+          <p>Organização, simulados e revisão espaçada para render mais.</p>
+          <a href="/blog/educacao-enem-dicas.html">Ler agora →</a>
         </div>
       </div>
     </div>
@@ -249,7 +293,7 @@
   </div>
 
   <script>
-    // ===== Endpoints (UNIFICADO) =====
+    // ===== Endpoints (backend unificado) =====
     const UNIFIED_BASE = 'https://zapsmart-api.onrender.com';
     const ENDPOINTS = {
       geral:    `${UNIFIED_BASE}/geral/chat`,
@@ -259,7 +303,6 @@
     };
     const PREMIUM_ONLY_MESSAGE = new Set(['financas','futebol','bets']);
 
-    // ===== Estado do Chat =====
     let currentChat = 'geral';
     let chatOpen = false;
     let userId = 'web_user_' + Date.now();
@@ -290,7 +333,19 @@
 
     function handleKeyPress(e){ if(e.key==='Enter') sendMessage(); }
 
-    // ===== Menu Geral =====
+    function isGeneralMenuSelection(text){
+      const t = (text||'').trim().toLowerCase();
+      if (/^(3|4|5|6|7|8|9|10|11)$/.test(t)) return true;
+      const areas = [
+        'corrida','atletismo','dieta','nutrição','nutricao',
+        'horóscopo','horoscopo','saúde mental','saude mental',
+        'games','jogos','filmes','séries','series',
+        'educação','educacao','viagens','turismo',
+        'promoções','promocoes','ofertas','cashback'
+      ];
+      return areas.some(a=>t.includes(a));
+    }
+
     function showMainMenu(){
       const menu = [
         "🤖 <b>ZAPSMART GERAL - 9 ÁREAS ATIVAS</b>",
@@ -314,20 +369,6 @@
       addMessage(menu,'bot');
     }
 
-    function isGeneralMenuSelection(text){
-      const t = (text||'').trim().toLowerCase();
-      if (/^(3|4|5|6|7|8|9|10|11)$/.test(t)) return true;
-      const areas = [
-        'corrida','atletismo','dieta','nutrição','nutricao',
-        'horóscopo','horoscopo','saúde mental','saude mental',
-        'games','jogos','filmes','séries','series',
-        'educação','educacao','viagens','turismo',
-        'promoções','promocoes','ofertas','cashback'
-      ];
-      return areas.some(a=>t.includes(a));
-    }
-
-    // ===== Mensagens =====
     async function sendMessage(predefinedMessage=null){
       const input=document.getElementById('chatInput');
       const message=predefinedMessage || input.value.trim();
@@ -335,7 +376,6 @@
       if(!predefinedMessage) input.value='';
       if(!chatOpen) toggleChat();
 
-      // Se digitou item do menu → força Geral
       if (isGeneralMenuSelection(message)){
         setChat('geral'); clearQuickActions();
       }
@@ -380,7 +420,6 @@
     function showTyping(){ document.getElementById('typing').classList.add('active'); const b=document.getElementById('chatBody'); b.scrollTop=b.scrollHeight; }
     function hideTyping(){ document.getElementById('typing').classList.remove('active'); }
 
-    // ===== Quick Actions =====
     function clearQuickActions(){
       document.querySelectorAll('.quick-actions').forEach(el=>el.remove());
     }
@@ -410,21 +449,11 @@
       renderQuickActions(presets[mode]||[]);
     }
 
-    // ===== Navegação suave para âncoras =====
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click',e=>{
-        e.preventDefault();
-        const target=document.querySelector(a.getAttribute('href'));
-        if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
-      });
-    });
-
-    // ===== Clique nos cards =====
-    // Premium
+    // clique nos cards
     document.getElementById('cardFinancas')?.addEventListener('click',e=>{
       if(e.target.closest('a')) return;
       setChat('financas'); if(!chatOpen) toggleChat();
-      addMessage('💰 Finanças ativado. Pergunte: "BTC agora", "PETR4 cotação", "Dólar agora", "calcular CDI"...','bot');
+      addMessage('💰 Finanças ativado. Peça: "Dólar agora", "Bitcoin", "PETR4 cotação", "CDI"...','bot');
       showDefaultQuickActionsFor('financas');
     });
     document.getElementById('cardFutebol')?.addEventListener('click',e=>{
@@ -439,11 +468,32 @@
       addMessage('🎰 Bets ativado. Peça odds, value bets e gestão de banca (responsabilidade).','bot');
       showDefaultQuickActionsFor('bets');
     });
-
-    // Geral (todos os 9)
     document.querySelectorAll('.area-card.general').forEach(card=>{
-      card.addEventListener('click',()=>{
-        openGeneralChat();
+      card.addEventListener('click',()=>openGeneralChat());
+    });
+
+    // ===== Abrir chat via parâmetros da URL: ?chat=futebol&q=Jogos%20de%20hoje
+    (function initFromURL(){
+      const p = new URLSearchParams(location.search);
+      const mode = p.get('chat');
+      const q = p.get('q');
+      if (mode){
+        setChat(mode);
+        if (!chatOpen) toggleChat();
+        if (['financas','futebol','bets'].includes(mode)) showDefaultQuickActionsFor(mode);
+      }
+      if (q){
+        // espera 200ms para o chat montar
+        setTimeout(()=>sendMessage(q), 200);
+      }
+    })();
+
+    // rolagem suave
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        const target=document.querySelector(a.getAttribute('href'));
+        if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
       });
     });
   </script>

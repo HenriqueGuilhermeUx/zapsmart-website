@@ -433,7 +433,7 @@
             
             <div class="areas-grid">
                 <!-- Áreas Premium -->
-                <div class="area-card premium">
+                <div class="area-card premium" id="cardFinancas">
                     <div class="area-emoji">💰</div>
                     <div class="area-title">ZapSmart Finanças</div>
                     <div class="area-desc">Cotações em tempo real, análise técnica, Bitcoin, ações B3, calculadoras financeiras avançadas</div>
@@ -540,7 +540,7 @@
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <div style="width: 40px; height: 40px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">🤖</div>
                     <div>
-                        <div style="font-weight: bold;">ZapSmart Geral</div>
+                        <div id="chatTitle" style="font-weight: bold;">ZapSmart Geral</div>
                         <div style="font-size: 0.8rem; opacity: 0.8;">9 áreas ativas</div>
                     </div>
                 </div>
@@ -572,8 +572,23 @@
     </div>
 
     <script>
+        // ========= NOVO: Endpoints e modo atual =========
+        const ENDPOINTS = {
+            geral: 'https://zapsmart-bot-geral.onrender.com/web/chat',
+            financas: 'https://zapsmart-financas.onrender.com/financas/chat'
+        };
+        let currentChat = 'geral'; // 'geral' | 'financas'
+        // ================================================
+
         let chatOpen = false;
         let userId = 'web_user_' + Date.now();
+
+        function setChat(mode) {
+            currentChat = (mode === 'financas') ? 'financas' : 'geral';
+            // Atualiza apenas o texto do título (sem mudar aparência)
+            const t = document.getElementById('chatTitle');
+            if (t) t.textContent = currentChat === 'financas' ? 'ZapSmart Finanças' : 'ZapSmart Geral';
+        }
 
         function toggleChat() {
             const popup = document.getElementById('chatPopup');
@@ -616,22 +631,27 @@
             showTyping();
             
             try {
-                // Chamar API do ZapSmart Geral
-                const response = await fetch('https://zapsmart-bot-geral.onrender.com/web/chat', {
+                // ========= ALTERADO: escolhe o endpoint e o payload =========
+                const url = ENDPOINTS[currentChat] || ENDPOINTS.geral;
+                const payload = (currentChat === 'geral')
+                  ? { message: message, user_id: userId }
+                  : { message: message };
+
+                const response = await fetch(url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({
-                        message: message,
-                        user_id: userId
-                    })
+                    body: JSON.stringify(payload)
                 });
-                
+                // ============================================================
+
                 if (response.ok) {
                     const data = await response.json();
                     hideTyping();
-                    addMessage(data.response, 'bot');
+                    // tenta várias chaves comuns de resposta (response/answer/text)
+                    const botText = data?.response || data?.answer || data?.text || '🤖 Sem resposta no momento.';
+                    addMessage(botText, 'bot');
                 } else {
                     throw new Error('Erro na resposta da API');
                 }
@@ -650,7 +670,7 @@
             
             const contentDiv = document.createElement('div');
             contentDiv.className = 'message-content';
-            contentDiv.innerHTML = text.replace(/\n/g, '<br>');
+            contentDiv.innerHTML = (text + '').replace(/\n/g, '<br>');
             
             messageDiv.appendChild(contentDiv);
             chatBody.appendChild(messageDiv);
@@ -682,6 +702,22 @@
                 }
             });
         });
+
+        // ========= NOVO: clicar no card de Finanças abre o chat em modo Finanças =========
+        (function attachFinancasCardHandler() {
+            const card = document.getElementById('cardFinancas');
+            if (!card) return;
+
+            card.addEventListener('click', (e) => {
+                // Se o clique foi no link do WhatsApp, não abre o chat
+                if (e.target.closest('a')) return;
+
+                setChat('financas');           // muda o modo para Finanças
+                if (!chatOpen) toggleChat();   // abre o chat, se estiver fechado
+                addMessage('💰 Finanças ativado. Faça sua pergunta (ex.: "BTC agora", "PETR4 cotação", "calcular CDI").', 'bot');
+            });
+        })();
+        // ================================================================================
     </script>
 </body>
 </html>
